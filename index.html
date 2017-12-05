@@ -1,40 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>fin-hypergrid</title>
-    <style>
-body{
-  font-family: sans-serif;
-}
-    pre{
-    font-family:monospace;
-    background-color:ivory;
-    padding:6px 10px;
-    border:1px dashed gray;
-}
-  a, pre{
-    margin-left:3em;
-  } 
-    </style>
-  </head>
-  <body>
-    <h1>fin-hypergrid Index</h1>
-    <h2>Build Files</h2>
-    <h3>Hypergrid Core</h3>
-      <pre>
-&lt;script src='https://fin-hypergrid.github.io/core/2.0.2/build/fin-hypergrid.js'>&lt;/script>
-&lt;script src='https://fin-hypergrid.github.io/core/2.0.2/build/fin-hypergrid.min.js'>&lt;/script></pre>
-      <pre>
-&lt;script src='https://fin-hypergrid.github.io/core/1.3.0/build/fin-hypergrid.js'>&lt;/script>
-&lt;script src='https://fin-hypergrid.github.io/core/1.3.0/build/fin-hypergrid.min.js'>&lt;/script></pre>
-      <h2>API Documentation</h2>
-      <a href='https://fin-hypergrid.github.io/core/doc'>https://fin-hypergrid.github.io/core/doc</a>
-      <h2>Demo</h2>
-      <a href='https://fin-hypergrid.github.io/core'>https://fin-hypergrid.github.io/core</a> <em>(latest)</em>
-      <br>
-      <a href='https://fin-hypergrid.github.io/core/2.0.2'>https://fin-hypergrid.github.io/core/2.0.2</a>
-      <br>
-      <a href='https://fin-hypergrid.github.io/core/1.3.0'>https://fin-hypergrid.github.io/core/1.3.0</a>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>fin-hypergrid CDN</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <script src="index.js"></script>
+</head>
+<body>
+<div class="page">
+  <h1 style="margin-top:0">fin-hypergrid CDN</h1>
+  <p>
+    Welcome to the Hypergrid <a target="_blank" href="https://en.wikipedia.org/wiki/Content_delivery_network" title="Content Delivery Network">CDN</a>.
+    This site hosts <em>build files</em> for Hypergrid core as well as the various Hypergrid plug-ins,
+    data source modules, library modules, mix-ins, <i>etc.,</i> whose source repositories are hosted under the
+    <a target="github" href="https://github.com/fin-hypergrid">fin-hypergrid GitHub organization</a>.
+  </p>
+  <blockquote>
+    A complete listing of all build files on the CDN along with sample script tags
+    can be found in the <a href="#index" style="font-weight:bold">CDN index</a>.
+  </blockquote>
+  <p>
+    Applications use <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a>
+    tags to load files from the CDN at run time.
+    In this way, individual modules are loaded onto the client sychronously, one file per <code>&lt;script&gt;</code> tag.
+  </p>
+  <blockquote>
+    Applications integrated at development time with the Hypergrid npm module
+    (and possibly other npm modules) using a bundler such as <a target="_blank" href="http://browserify.org">Browserify</a>
+    or <a target="_blank" href="http://webpack.github.io/">webpack</a> do not need these build files and should not be loading anything from this CDN at run time.</em>
+  </blockquote>
+
+  <h2>Editions</h2>
+  <p>
+    All build files are offed in two editions:
+  </p>
+  <ul>
+    <li>
+      <code>module-name.js</code> —
+      Unminified versions are for debugging purposes and, when bundled, include a
+      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">source map</a>.
+    </li>
+    <li>
+      <code>module-name.min.js</code> —
+      <a target="_blank" href="https://en.wikipedia.org/wiki/Minification_(programming)">Minified</a>
+      versions are smaller and faster and are for use on production.
+    </li>
+  </ul>
+
+  <h2>Usage</h2>
+  <ol>
+    <li>
+      Copy and paste <code>&lt;script&gt;</code> tags from the
+      <a href="#index">CDN index</a>,
+      as needed, into your application's <code>.html</code> file
+      to have your application load them at run time.
+    </li>
+    <li>
+      Reference the modules in your in code as illustrated in the next section.
+    </li>
+  </ol>
+
+
+  <h3>Built-in modules</h3>
+  <p>
+    The following modules are built in to Hypergrid:
+  </p>
+  <ul>
+    <li><a target="github" class="code" href="https://github.com/joneit/extend-me">extend-me</a></li>
+    <li><a target="github" class="code" href="https://github.com/fin-hypergrid/field-tools">fin-hypergrid-field-tools</a></li>
+    <li><a target="github" class="code" href="https://github.com/joneit/pubsubstar">pubsubstar</a></li>
+  </ul>
+  <p>
+    These modules are implicitly loaded; no <code>&lt;script&gt;</code> tags required! (So skip step 1 above.)
+  </p>
+
+  <h2>Referencing modules in code</h2>
+  <p>
+    How your modules reference other modules
+    — and how other modules reference your modules —
+    depends on whether or not the modules in question
+    are wrapped up as Hypergrid Client Modules.
+  </p>
+  <blockquote>
+    Wrapping your modules is easy and highly recommended as doing so allows you to structure your code files
+    like CommonJS modules, which means they are ready as-is for an eventual migration to a bundled
+    build (using a bundler such as <a target="_blank" href="http://browserify.org">Browserify</a>
+    or <a target="_blank" href="http://webpack.github.io/">webpack</a>).
+    See the <a target="wiki" href="https://github.com/fin-hypergrid/core/wiki/Client-Modules">Client Modules</a> wiki for details.
+  </blockquote>
+
+  <h3 id="referencing-hypergrid">Hypergrid core</h3>
+  <p>
+    The Hypergrid core object is both a constructor and a namespace and always required.
+    It is referenced as follows:
+  </p>
+  <div class="code-caption">From raw JavaScript:</div>
+  <pre>var Hypergrid = window.fin.Hypergrid;</pre>
+  <div class="code-caption">From within a Hypergrid Client Module:</div>
+  <pre>var Hypergrid = require('fin-hypergrid');</pre>
+
+  <h3 id="referencing-client-modules">Hypergrid Client Modules</h3>
+  <p>
+    Most modules whose source repositories are hosted under
+    <a target="github" href="https://github.com/fin-hypergrid">https://github.com/fin-hypergrid/</a>
+    are built with the Hypergrid Client Module wrapper and are referenced as follows:
+  <div class="code-caption">From raw JavaScript:</div>
+  <pre>var myModule = window.fin.Hypergrid.modules['my-module'];</pre>
+  <div class="code-caption">From within another Hypergrid Client Module:</div>
+  <pre>var myModule = require('my-module');</pre>
+
+  <h3>Other modules</h3>
+  <p>
+    All other modules are referenced using a module-dependent global variable.
+    Modules are free to insert themselves into <code>fin.Hypergrid.modules</code>, which
+    would let them be referenced as a Client Module; however they would not themselves be able
+    to reference Hypergrid or Hypergrid Client Modules using <code>require()</code>.
+  </p>
+
+  <hr>
+
+  <h1 id="index">CDN index</h1>
+
+  <h2 class="modules">Hypergrid core</h2>
+
+  <h2><a target="github" class="code" href="https://github.com/fin-hypergrid/core">fin-hypergrid/core</a></h3>
+    <p>
+      The Hypergrid core
+      <a target="_blank" href="https://www.jvandemo.com/a-10-minute-primer-to-javascript-modules-module-formats-module-loaders-and-module-bundlers#modulebundler"
+         title="A single JavaScript file (loaded with a single &lt;script&gt; tag), that contains an entire hierarchy of JavaScript modules &quot;bundled&quot; together into a single &quot;build&quot; of the application. Click the link for more information.">bundled build</a>
+      is always required. Include only one of the following scripts in your application:
+    </p>
+
+    <table><tr>
+      <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/core/2.0.2/build/fin-hypergrid.js'>&lt;/script>"></td>
+      <td><img src="copy.png"></td>
+    </tr><tr>
+      <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/core/2.0.2/build/fin-hypergrid.min.js'>&lt;/script>"></td>
+      <td><img src="copy.png"></td>
+    </tr></table>
+
+    <table><tr>
+      <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/core/1.3.0/build/fin-hypergrid.js'>&lt;/script>"></td>
+      <td><img src="copy.png"></td>
+    </tr><tr>
+      <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/core/1.3.0/build/fin-hypergrid.min.js'>&lt;/script>"></td>
+      <td><img src="copy.png"></td>
+    </tr></table>
+
+    <blockquote>
+      The unminified versions are a hefty (~1.9 <small>MB</small>).
+      Always use a minified version (~0.2 <small>MB</small>) on production.
+    </blockquote>
+
+    <h3>API Documentation</h4>
+      <a target="_blank" class="indent" href='https://fin-hypergrid.github.io/core/doc'>https://fin-hypergrid.github.io/core/doc</a>
+
+      <h3>Demo</h4>
+        <div class="indent"><a target="demo" href='https://fin-hypergrid.github.io/core'>https://fin-hypergrid.github.io/core</a> <em>(latest)</em></div>
+        <div class="indent"><a target="demo" href='https://fin-hypergrid.github.io/core/2.0.2'>https://fin-hypergrid.github.io/core/2.0.2</a></div>
+        <div class="indent"><a target="demo" href='https://fin-hypergrid.github.io/core/1.3.0'>https://fin-hypergrid.github.io/core/1.3.0</a></div>
+
+        <h2 class="modules">Hypergrid plug-ins</h2>
+
+        <h2><a target="github" class="code" href="https://github.com/fin-hypergrid/grouped-header">fin-hypergrid-grouped-header</a></h3>
+
+      <table><tr>
+        <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/grouped-header/1.0.0/build/grouped-header.js'>&lt;/script>"></td>
+        <td><img src="copy.png"></td>
+      </tr><tr>
+        <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/grouped-header/1.0.0/build/grouped-header.min.js'>&lt;/script>"></td>
+        <td><img src="copy.png"></td>
+      </tr></table>
+
+      <h2 class="modules">Other Hypergrid modules, mix-ins, <i>etc.</i></h2>
+
+      <h2><a target="github" class="code" href="https://github.com/fin-hypergrid/primary-key">fin-hypergrid-primary-key</a></h3>
+
+    <table><tr>
+      <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/primary-key/1.0.0/build/primary-key.js'>&lt;/script>"></td>
+      <td><img src="copy.png"></td>
+    </tr><tr>
+      <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/primary-key/1.0.0/build/primary-key.min.js'>&lt;/script>"></td>
+      <td><img src="copy.png"></td>
+    </tr></table>
+
+    <h2 class="modules">Data Source modules</h2>
+
+    <h2><a target="github" class="code" href="https://github.com/fin-hypergrid/datasaur-base">datasaur-base</a></h3>
+
+      <table><tr>
+        <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/datasaur-base/2.0.0/build/datasaur-base.js'>&lt;/script>"></td>
+        <td><img src="copy.png"></td>
+      </tr><tr>
+        <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/datasaur-base/2.0.0/build/datasaur-base.min.js'>&lt;/script>"></td>
+        <td><img src="copy.png"></td>
+      </tr></table>
+
+      <h2><a target="github" class="code" href="https://github.com/fin-hypergrid/datasaur-local">datasaur-local</a></h3>
+
+        <table><tr>
+          <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/datasaur-local/1.0.0/build/datasaur-local.js'>&lt;/script>"></td>
+          <td><img src="copy.png"></td>
+        </tr><tr>
+          <td><input type="text" value="&lt;script src='https://fin-hypergrid.github.io/datasaur-local/1.0.0/build/datasaur-local.min.js'>&lt;/script>"></td>
+          <td><img src="copy.png"></td>
+        </tr></table>
+
+</div>
+
+<div class="feedback">Copied!</div>
+
+</body>
 </html>
