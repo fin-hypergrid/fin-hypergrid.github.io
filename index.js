@@ -2,7 +2,7 @@ window.onload = function() {
 
     'use strict';
 
-    document.querySelectorAll('img[src="copy.png"]').forEach(function(el) {
+    document.querySelectorAll('img[src$="copy.png"]').forEach(function(el) {
         var cell = el.parentElement,
             scriptTag = getScriptTagInputEl(cell).value,
             matches = scriptTag.match(/\/(\d+\.\d+\.\d+)\/build\/(.+\.js)/),
@@ -27,16 +27,17 @@ window.onload = function() {
         feedback(cell);
     }
 
+    var fb = document.querySelector('div.feedback');
+
     function feedback(cell, text) {
-        var fb = document.querySelector('div.feedback');
         var parentRect = cell.getBoundingClientRect();
         var fbRect = fb.getBoundingClientRect();
         var margin = (parentRect.height - fbRect.height) / 2;
 
         if (text) { fb.innerText = text; }
 
-        fb.style.left = parentRect.left - margin - fbRect.width + 'px';
-        fb.style.top = parentRect.top + margin + 'px';
+        fb.style.left = window.pageXOffset + parentRect.left - margin - fbRect.width + 'px';
+        fb.style.top = window.pageYOffset + parentRect.top + margin + 'px';
         fb.style.opacity = .75;
         setTimeout(function() { fb.style.opacity = 0; }, 1700);
     }
